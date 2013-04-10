@@ -93,9 +93,11 @@
   
   code_tag_start = "<code" [^>]* ">" ;
   code_tag_end = "</code>" ;
-  
-  notextile = "<notextile>" >X LF? default+ >A %T :>> "</notextile>";
-  
+
+  notextile_start = "<notextile" [^>]* ">" ;
+  notextile_end = "</notextile>" ;
+  notextile = notextile_start >X LF? default+ >A %T :>> notextile_end;
+
   # URI tokens (lifted from Mongrel)
   CTL = (cntrl | 127);
   safe = ("$" | "-" | "_" | ".");

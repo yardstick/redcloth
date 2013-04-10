@@ -103,6 +103,15 @@ html: |-
   # *test*
 valid_html: false
 ---
+name: notextile with attributes
+in: |-
+  <notextile foo="bar">
+  *ignore me*
+  </notextile>
+html: |-
+  *ignore me*
+valid_html: false
+---
 name: unfinished notextile tag
 in: |-
   <notextile>
