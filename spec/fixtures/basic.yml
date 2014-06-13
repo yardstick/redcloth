@@ -392,6 +392,11 @@ name: language designations
 desc: Language designations can be given between angel brackets.
 in: p[fr]. rouge
 html: <p lang="fr">rouge</p>
+---
+name: language designations
+desc: Language designations can contain numbers and commas
+in: p[100,i]. rouge
+html: <p lang="100,i">rouge</p>
 --- 
 name: block attributes on phrase modifiers
 desc: All block attributes can be applied to phrases as well by placing them just inside the opening modifier.
