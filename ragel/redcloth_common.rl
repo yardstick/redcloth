@@ -17,11 +17,11 @@
 
   # textile element attributes
   class = [A-Za-z0-9\- _]+ ;
-  id = [A-Za-z0-9\-_]+ ;
-  style_chars = [A-Za-z0-9: ;\-_#&.%'"];
+  id = [A-Za-z0-9\-_.]+ ;
+  style_chars = [^{}\n\r\v];
   style_url = "url(" [a-z0-9'".\\/#?=+@_\-]+ ")";
   style = style_chars (style_chars+ | style_url)* ; # maybe put in uri when in url()
-  language = [a-z\-_]+ ;
+  language = [a-zA-Z0-9\-_,]+ ;
 
   A_LEFT = "<" %{ ATTR_SET("align", "left"); } ;
   A_RIGHT = ">" %{ ATTR_SET("align", "right"); } ;
@@ -93,9 +93,11 @@
   
   code_tag_start = "<code" [^>]* ">" ;
   code_tag_end = "</code>" ;
-  
-  notextile = "<notextile>" >X LF? default+ >A %T :>> "</notextile>";
-  
+
+  notextile_start = "<notextile" [^>]* ">" ;
+  notextile_end = "</notextile>" ;
+  notextile = notextile_start >X LF? default+ >A %T :>> notextile_end;
+
   # URI tokens (lifted from Mongrel)
   CTL = (cntrl | 127);
   safe = ("$" | "-" | "_" | ".");
