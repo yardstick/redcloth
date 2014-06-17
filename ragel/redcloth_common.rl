@@ -21,7 +21,7 @@
   style_chars = [^{}\n\r\v];
   style_url = "url(" [a-z0-9'".\\/#?=+@_\-]+ ")";
   style = style_chars (style_chars+ | style_url)* ; # maybe put in uri when in url()
-  language = [a-z\-_]+ ;
+  language = [a-zA-Z0-9\-_,]+ ;
 
   A_LEFT = "<" %{ ATTR_SET("align", "left"); } ;
   A_RIGHT = ">" %{ ATTR_SET("align", "right"); } ;
